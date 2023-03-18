@@ -8,8 +8,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+
+@Entity(name = "Perfil")
+@Table(name = "perfil")
 public class Perfil implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -21,6 +24,10 @@ public class Perfil implements Serializable {
 	TipoPerfil perfil;
 		
 	
+	public Perfil() {
+		super();
+	}
+
 	public Perfil(Long id, TipoPerfil perfil) {
 		super();
 		this.id = id;

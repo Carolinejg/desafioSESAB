@@ -2,6 +2,7 @@ package com.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-@Entity
+@Entity(name = "Usuario")
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -34,14 +38,22 @@ public class Usuario implements Serializable {
 	private String email;
 	
 	@ManyToOne()
-	@JoinTable()
 	private Perfil perfil;
 	
 	@ManyToMany()
-	@JoinTable()
-	private Endereco enderecos;
+	@JoinTable(name = "usuario_endereco ",
+			joinColumns = @JoinColumn(name = "usuario_id"),
+			inverseJoinColumns = @JoinColumn(name = "endereco_id"))
+	private List<Endereco> enderecos;
+	
+	
+	public Usuario() {
+		super();
+	}
 
-	public Usuario(Long id, Date data, String nome, String cpf, String email, Perfil perfil, Endereco enderecos) {
+	
+
+	public Usuario(Long id, Date data, String nome, String cpf, String email, Perfil perfil, List<Endereco> enderecos) {
 		super();
 		this.id = id;
 		this.data = data;
@@ -52,61 +64,91 @@ public class Usuario implements Serializable {
 		this.enderecos = enderecos;
 	}
 
+	
+
 	public Long getId() {
 		return id;
 	}
+
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
+
 	public Date getData() {
 		return data;
 	}
+
+
 
 	public void setData(Date data) {
 		this.data = data;
 	}
 
+
+
 	public String getNome() {
 		return nome;
 	}
+
+
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+
+
 	public String getCpf() {
 		return cpf;
 	}
+
+
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+
+
 	public Perfil getPerfil() {
 		return perfil;
 	}
+
+
 
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
 
-	public Endereco getEnderecos() {
+
+
+	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
 
-	public void setEnderecos(Endereco enderecos) {
+
+
+	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
+
+
 
 	@Override
 	public int hashCode() {
