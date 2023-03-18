@@ -33,6 +33,13 @@ public class Perfil implements Serializable {
 		this.id = id;
 		this.perfil = perfil;
 	}
+	
+	
+
+	public Perfil(TipoPerfil perfil) {
+		super();
+		this.perfil = perfil;
+	}
 
 	public Long getId() {
 		return id;

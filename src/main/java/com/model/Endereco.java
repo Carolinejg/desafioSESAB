@@ -33,6 +33,14 @@ public class Endereco implements Serializable {
 		this.logradouro = logradouro;
 		this.cep = cep;
 	}
+	
+	
+
+	public Endereco(String logradouro, String cep) {
+		super();
+		this.logradouro = logradouro;
+		this.cep = cep;
+	}
 
 	public Long getId() {
 		return id;
