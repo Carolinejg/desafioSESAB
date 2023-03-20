@@ -9,6 +9,7 @@ import javax.inject.Named;
 import com.model.Endereco;
 import com.model.Usuario;
 import com.repository.Usuarios;
+import com.util.FacesMessages;
 
 @Named
 @ViewScoped
@@ -24,6 +25,11 @@ public class GestaoUsuariosBean implements Serializable {
     
     private Endereco endereco = new Endereco();
     
+    private String termoPesquisa;
+    
+    @Inject
+    private FacesMessages messages;
+    
     @Inject
     private Usuarios usuarios;
     
@@ -37,6 +43,14 @@ public class GestaoUsuariosBean implements Serializable {
     
     public GestaoUsuariosBean() {
     	System.out.println("QUALQUER COISA");
+    }
+    
+    public void pesquisarPorNome() {
+    	listaUsuarios = usuarios.pesquisarPorNome(termoPesquisa);
+    	
+    	if(listaUsuarios.isEmpty()) {
+    		messages.info("Sua consulta não retornou registros");
+    	}
     }
     
     public void salvarEnderecos() {
@@ -64,6 +78,16 @@ public class GestaoUsuariosBean implements Serializable {
     public String listagem() {
     	return "listagemUsuarios?faces-redirect=true";
     }
+
+	public String getTermoPesquisa() {
+		return termoPesquisa;
+	}
+
+	public void setTermoPesquisa(String termoPesquisa) {
+		this.termoPesquisa = termoPesquisa;
+	}
+    
+    
     
    
 }

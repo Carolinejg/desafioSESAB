@@ -26,8 +26,8 @@
 
 	<div id="conteudo">
 		<h:form>
-
-
+			
+			<p:messages autoUpdate="true"></p:messages>
 			<p>
 
 				<p:commandButton value="Voltar"
@@ -35,7 +35,7 @@
 			</p>
 
 			<p>
-				<p:inputText placeholder="Nome"></p:inputText>
+				<p:inputText placeholder="Nome" value = "#{gestaoUsuariosBean.termoPesquisa}"></p:inputText>
 			</p>
 			<p>
 				<p:inputText placeholder="Cpf"></p:inputText>
@@ -47,11 +47,12 @@
 				<p:inputText placeholder="Fim"></p:inputText>
 			</p>
 			<p>
-				<p:commandButton value="Pesquisar" icon="fa fa fa-search" />
+				<p:commandButton value="Pesquisar" icon="fa fa-search" 
+				actionListener="#{gestaoUsuariosBean.pesquisarPorNome}" update="usuariosTabela" />
 			</p>
 
 
-			<p:dataTable value="#{gestaoUsuariosBean.listaUsuarios}"
+			<p:dataTable id ="usuariosTabela" value="#{gestaoUsuariosBean.listaUsuarios}"
 				var="usuario" emptyMessage="Não existem usuários cadastrados"
 				paginator="true" rows="3" paginatorPosition="bottom"
 				sortBy="#{usuario.nome}">
