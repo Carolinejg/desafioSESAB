@@ -20,57 +20,75 @@
 
 	<div id="conteudo">
 		<h:form>
-
 			<p:commandButton value="Listagem"
-				action="#{gestaoUsuariosBean.listagem}" icon="fa-mail-forward"/>
+				action="#{gestaoUsuariosBean.listagem}" icon="fa-mail-forward" />
+		</h:form>
+
+		<h:form>
+
+			<p:messages autoUpdate="true"></p:messages>
 
 			<h:panelGrid colunms="2">
+
 				<p:outputLabel value="Nome: " for="nome"></p:outputLabel>
 				<h:panelGroup>
-					<p:inputText id="nome" value="#{gestaoUsuariosBean.usuario.nome}"></p:inputText>
+					<p:inputText id="nome" value="#{gestaoUsuariosBean.usuario.nome}"
+						required="true">
+					</p:inputText>
+					<p:message for="nome" />
 				</h:panelGroup>
 
 				<p:outputLabel value="Cpf " for="cpf"></p:outputLabel>
 				<h:panelGroup>
-					<p:inputText id="cpf" value="#{gestaoUsuariosBean.usuario.cpf}"></p:inputText>
+					<p:inputText id="cpf" value="#{gestaoUsuariosBean.usuario.cpf}"
+						required="true">
+					</p:inputText>
+					<p:message for="cpf" />
 				</h:panelGroup>
-				
+
 				<p:outputLabel value="Email " for="email"></p:outputLabel>
 				<h:panelGroup>
-					<p:inputText id="email" value="#{gestaoUsuariosBean.usuario.email}"></p:inputText>
+					<p:inputText id="email" value="#{gestaoUsuariosBean.usuario.email}"
+						required="true">
+					</p:inputText>
+					<p:message for="email" />
 				</h:panelGroup>
 
 				<p:outputLabel value="Logradouro " for="logradouro"></p:outputLabel>
 				<h:panelGroup>
 					<p:inputText id="logradouro"
 						value="#{gestaoUsuariosBean.endereco.logradouro}"></p:inputText>
+					<h:message for="logradouro" />
 				</h:panelGroup>
 
 				<p:outputLabel value="Cep " for="cep"></p:outputLabel>
 				<h:panelGroup>
 					<p:inputText id="cep" value="#{gestaoUsuariosBean.endereco.cep}"></p:inputText>
+					<h:message for="cep" />
 				</h:panelGroup>
 
 				<p:outputLabel value="Perfil: " for="perfil"></p:outputLabel>
 				<h:panelGroup>
 					<p:selectOneMenu id="perfil"
-						value="#{gestaoUsuariosBean.usuario.perfil}">
+						value="#{gestaoUsuariosBean.usuario.perfil}" required="true">
 						<f:selectItems value="#{gestaoPerfisBean.tiposPerfis}"></f:selectItems>
 					</p:selectOneMenu>
 				</h:panelGroup>
 
-				<h:messages style="color:red;margin:8px;" />
-				<p:commandButton value="Cadastrar Usuário"
-					actionListener="#{gestaoUsuariosBean.salvar}" update="@form" icon="fa fa-plus" />
 
-				<h:messages style="color:red;margin:8px;" />
+				<p:messages style="color:red;margin:8px;" />
+				<p:commandButton value="Cadastrar Usuário"
+					actionListener="#{gestaoUsuariosBean.salvar}" update="@form"
+					icon="fa fa-plus" />
+
+				<p:messages style="color:red;margin:8px;" />
 				<p:commandButton value="Cadastrar endereço"
 					actionListener="#{gestaoUsuariosBean.salvarEnderecos}"
-					update="usuariosTabela" icon="fa fa-plus"/>
+					update="usuariosTabela" icon="fa fa-plus" />
 			</h:panelGrid>
 
-			<p:dataTable id ="usuariosTabela" value="#{gestaoUsuariosBean.usuario.enderecos}"
-				var="endereco" 
+			<p:dataTable id="usuariosTabela"
+				value="#{gestaoUsuariosBean.usuario.enderecos}" var="endereco"
 				paginator="true" rows="3" paginatorPosition="bottom"
 				sortBy="#{endereco.logradouro}">
 

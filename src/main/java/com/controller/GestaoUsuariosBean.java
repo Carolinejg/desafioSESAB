@@ -54,8 +54,13 @@ public class GestaoUsuariosBean implements Serializable {
     }
     
     public void salvarEnderecos() {
-     	usuario.getEnderecos().add(endereco);
-     	endereco = new Endereco();
+    	if(endereco.getLogradouro().equals("") || endereco.getCep().equals("")) {
+    		messages.info("Logradouro e cep precisam ser informados");
+    	}else {
+    		usuario.getEnderecos().add(endereco);
+         	endereco = new Endereco();
+    	}
+     	
      	
     }
 	
