@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <h:head>
 
@@ -25,47 +26,66 @@
 
 	<div id="conteudo">
 		<h:form>
+
+
 			<p>
 
 				<p:commandButton value="Voltar"
-					action="cadastro?faces-redirect=true" />
+					action="cadastro?faces-redirect=true" icon="fa-reply"/>
+			</p>
+
+			<p>
+				<p:inputText placeholder="Nome"></p:inputText>
+			</p>
+			<p>
+				<p:inputText placeholder="Cpf"></p:inputText>
+			</p>
+			<p>
+				<p:inputText placeholder="Inicio"></p:inputText>
+			</p>
+			<p>
+				<p:inputText placeholder="Fim"></p:inputText>
+			</p>
+			<p>
+				<p:commandButton value="Pesquisar" icon="fa fa fa-search" />
 			</p>
 
 
 			<p:dataTable value="#{gestaoUsuariosBean.listaUsuarios}"
 				var="usuario" emptyMessage="Não existem usuários cadastrados"
-				paginator="true" rows="3" paginatorPosition="bottom" sortBy="#{usuario.nome}">
+				paginator="true" rows="3" paginatorPosition="bottom"
+				sortBy="#{usuario.nome}">
 
-				<p:column headerText="ID">
+				<p:column headerText="ID" style="text-align: center">
 					<h:outputText value="#{usuario.id}" />
 				</p:column>
 
-				<p:column headerText="Data cadastro">
+				<p:column headerText="Data cadastro" style="text-align: center">
 					<h:outputText value="#{usuario.data}" />
 				</p:column>
 
-				<p:column headerText="Nome">
+				<p:column headerText="Nome" style="text-align: center">
 					<h:outputText value="#{usuario.nome}" />
 				</p:column>
 
-				<p:column headerText="CPF">
+				<p:column headerText="CPF" style="text-align: center">
 					<h:outputText value="#{usuario.cpf}" />
 				</p:column>
 
-				<p:column headerText="Email">
+				<p:column headerText="Email" style="text-align: center">
 					<h:outputText value="#{usuario.email}" />
 				</p:column>
 
-				<p:column headerText="Perfil">
+				<p:column headerText="Perfil" style="text-align: center">
 					<h:outputText value="#{usuario.perfil.perfil}" />
 				</p:column>
 
-				<p:column headerText="Ações">
-					<p:commandButton value="Detalhar" />
+				<p:column headerText="Ações" style="text-align: center">
+					<p:commandButton title="Detalhar" icon="fa-list" />
 
-					<p:commandButton value="Editar" />
+					<p:commandButton title="Editar" icon="fa fa-edit" />
 
-					<p:commandButton value="Excluir" />
+					<p:commandButton title="Excluir" icon="fa fa-trash" />
 
 				</p:column>
 

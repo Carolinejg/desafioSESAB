@@ -22,7 +22,7 @@
 		<h:form>
 
 			<p:commandButton value="Listagem"
-				action="#{gestaoUsuariosBean.listagem}" />
+				action="#{gestaoUsuariosBean.listagem}" icon="fa-mail-forward"/>
 
 			<h:panelGrid colunms="2">
 				<p:outputLabel value="Nome: " for="nome"></p:outputLabel>
@@ -61,26 +61,26 @@
 
 				<h:messages style="color:red;margin:8px;" />
 				<p:commandButton value="Cadastrar Usuário"
-					actionListener="#{gestaoUsuariosBean.salvar}" update="@form" />
+					actionListener="#{gestaoUsuariosBean.salvar}" update="@form" icon="fa fa-plus" />
 
 				<h:messages style="color:red;margin:8px;" />
 				<p:commandButton value="Cadastrar endereço"
 					actionListener="#{gestaoUsuariosBean.salvarEnderecos}"
-					update="@form" />
+					update="@form" icon="fa fa-plus"/>
 			</h:panelGrid>
 
 			<p:dataTable value="#{[0, 0, 0, 0]}">
 
-				<p:column headerText="Logradouro">
+				<p:column headerText="Logradouro" style="text-align: center">
 					<h:outputText value="gdfgfgfd"></h:outputText>
 				</p:column>
 
-				<p:column headerText="Cep">
+				<p:column headerText="Cep" style="text-align: center">
 					<h:outputText value="15646545"></h:outputText>
 				</p:column>
 
-				<p:column headerText="Ação">
-					<p:commandButton value="Excluir" />
+				<p:column headerText="Ação" style="text-align: center">
+					<p:commandButton title="Excluir" icon="fa fa-trash" />
 				</p:column>
 
 
