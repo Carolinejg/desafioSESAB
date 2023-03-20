@@ -45,7 +45,9 @@ public class GestaoUsuariosBean implements Serializable {
     	System.out.println("testando");
     }
     
-    
+    public String listagem() {
+    	return "listagemUsuarios";
+    }
     
    
 }

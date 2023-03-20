@@ -21,7 +21,10 @@
 
 	<div id="conteudo">
 		<h:form>
-			<h:commandButton value="Voltar"></h:commandButton>
+			
+			<p:commandButton value="Listagem"
+				action="#{gestaoUsuariosBean.listagem}" />
+
 			<h:panelGrid colunms="2">
 				<h:outputLabel value="Nome: " for="nome"></h:outputLabel>
 				<h:inputText id="nome" value="#{gestaoUsuariosBean.usuario.nome}"></h:inputText>
@@ -43,14 +46,15 @@
 				<h:inputText id="cep" value="#{gestaoUsuariosBean.endereco.cep}"></h:inputText>
 
 				<h:outputLabel value="Perfil: " for="perfil"></h:outputLabel>
-				<h:selectOneMenu id="perfil" value="#{gestaoUsuariosBean.usuario.perfil}">
+				<h:selectOneMenu id="perfil"
+					value="#{gestaoUsuariosBean.usuario.perfil}">
 					<f:selectItems value="#{gestaoPerfisBean.tiposPerfis}"></f:selectItems>
 				</h:selectOneMenu>
 
 				<h:messages style="color:red;margin:8px;" />
 				<h:commandButton value="Cadastrar Usuário"
 					actionListener="#{gestaoUsuariosBean.salvar}" />
-					
+
 				<h:messages style="color:red;margin:8px;" />
 				<h:commandButton value="Cadastrar endereço"
 					actionListener="#{gestaoUsuariosBean.salvarEnderecos}" />
