@@ -46,7 +46,7 @@ public class GestaoUsuariosBean implements Serializable {
     }
     
     public String listagem() {
-    	return "listagemUsuarios";
+    	return "listagemUsuarios?faces-redirect=true";
     }
     
    
