@@ -33,7 +33,8 @@
 
 
 			<p:dataTable value="#{gestaoUsuariosBean.listaUsuarios}"
-				var="usuario" emptyMessage="Não existem usuários cadastrados">
+				var="usuario" emptyMessage="Não existem usuários cadastrados"
+				paginator="true" rows="3" paginatorPosition="bottom">
 
 				<p:column headerText="ID">
 					<h:outputText value="#{usuario.id}" />
@@ -60,15 +61,12 @@
 				</p:column>
 
 				<p:column headerText="Ações">
-					<p:commandButton value="Detalhar"
-						/>
-					
-					<p:commandButton value="Editar"
-						/>
-					
-					<p:commandButton value="Excluir"
-						 />
-					
+					<p:commandButton value="Detalhar" />
+
+					<p:commandButton value="Editar" />
+
+					<p:commandButton value="Excluir" />
+
 				</p:column>
 
 
