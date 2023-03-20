@@ -66,17 +66,20 @@
 				<h:messages style="color:red;margin:8px;" />
 				<p:commandButton value="Cadastrar endereço"
 					actionListener="#{gestaoUsuariosBean.salvarEnderecos}"
-					update="@form" icon="fa fa-plus"/>
+					update="usuariosTabela" icon="fa fa-plus"/>
 			</h:panelGrid>
 
-			<p:dataTable value="#{[0, 0, 0, 0]}">
+			<p:dataTable id ="usuariosTabela" value="#{gestaoUsuariosBean.usuario.enderecos}"
+				var="endereco" 
+				paginator="true" rows="3" paginatorPosition="bottom"
+				sortBy="#{endereco.logradouro}">
 
 				<p:column headerText="Logradouro" style="text-align: center">
-					<h:outputText value="gdfgfgfd"></h:outputText>
+					<h:outputText value="#{endereco.logradouro}" />
 				</p:column>
 
 				<p:column headerText="Cep" style="text-align: center">
-					<h:outputText value="15646545"></h:outputText>
+					<h:outputText value="#{endereco.cep}"></h:outputText>
 				</p:column>
 
 				<p:column headerText="Ação" style="text-align: center">

@@ -56,6 +56,7 @@ public class GestaoUsuariosBean implements Serializable {
     public void salvarEnderecos() {
      	usuario.getEnderecos().add(endereco);
      	endereco = new Endereco();
+     	
     }
 	
 	public Endereco getEndereco() {
