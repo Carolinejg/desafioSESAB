@@ -10,6 +10,10 @@
 	<title>Listagem</title>
 
 	<h:outputStylesheet library="algaworks" name="estilo.css" />
+	<f:metadata>
+		<f:viewAction action="#{gestaoUsuariosBean.todosUsuarios}" />
+
+	</f:metadata>
 
 </h:head>
 
@@ -21,44 +25,56 @@
 
 	<div id="conteudo">
 		<h:form>
-			<p> 
-				
-				<p:commandButton value="Voltar" action="cadastro?faces-redirect=true" />
-			</p>
-			
-			
-			<p:dataTable>
+			<p>
 
-				<p:column headerText="Id">
-					<h:outputText value="1"></h:outputText>
+				<p:commandButton value="Voltar"
+					action="cadastro?faces-redirect=true" />
+			</p>
+
+
+			<p:dataTable value="#{gestaoUsuariosBean.listaUsuarios}"
+				var="usuario" emptyMessage="Não existem usuários cadastrados">
+
+				<p:column headerText="ID">
+					<h:outputText value="#{usuario.id}" />
 				</p:column>
+
+				<p:column headerText="Data cadastro">
+					<h:outputText value="#{usuario.data}" />
+				</p:column>
+
 				<p:column headerText="Nome">
-					<h:outputText value="15646545"></h:outputText>
+					<h:outputText value="#{usuario.nome}" />
 				</p:column>
 
 				<p:column headerText="CPF">
-					<h:outputText value="46545"></h:outputText>
+					<h:outputText value="#{usuario.cpf}" />
 				</p:column>
 
 				<p:column headerText="Email">
-					<h:outputText value="loh_jg@hotmail.com"></h:outputText>
+					<h:outputText value="#{usuario.email}" />
 				</p:column>
 
 				<p:column headerText="Perfil">
-					<h:outputText value="Administrador"></h:outputText>
+					<h:outputText value="#{usuario.perfil.perfil}" />
 				</p:column>
 
-				<p:column headerText="Data">
-					<h:outputText value="12/02/2023"></h:outputText>
-				</p:column>
-
-				<p:column headerText="Ação">
+				<p:column headerText="Ações">
+					<p:commandButton value="Detalhar"
+						/>
+					
+					<p:commandButton value="Editar"
+						/>
+					
+					<p:commandButton value="Excluir"
+						 />
 					
 				</p:column>
 
 
+
 			</p:dataTable>
-			
+
 
 		</h:form>
 

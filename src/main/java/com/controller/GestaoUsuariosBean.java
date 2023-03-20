@@ -1,11 +1,14 @@
 package com.controller;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.model.Endereco;
 import com.model.Usuario;
+import com.repository.Usuarios;
 
 @Named
 @ViewScoped
@@ -17,7 +20,20 @@ public class GestaoUsuariosBean implements Serializable {
     
     private Usuario usuario = new Usuario();
     
+    private List<Usuario> listaUsuarios;
+    
     private Endereco endereco = new Endereco();
+    
+    @Inject
+    private Usuarios usuarios;
+    
+    public void todosUsuarios() {
+    	listaUsuarios = usuarios.pesquisarTudo();
+    }
+    
+    public List<Usuario>getListaUsuarios(){
+    	return listaUsuarios;
+    }
     
     public GestaoUsuariosBean() {
     	System.out.println("QUALQUER COISA");

@@ -14,7 +14,7 @@ import com.util.Transacional;
 public class CadastroUsuarioService implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	
+	//@Inject
 	private Usuarios usuarios;
 	
 	@Transacional

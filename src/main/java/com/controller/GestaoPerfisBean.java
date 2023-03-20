@@ -13,8 +13,6 @@ import com.model.TipoPerfil;
 public class GestaoPerfisBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Perfil perfil = new Perfil();
-	
 	public String[] getTiposPerfis() {
 		String[] nomes = {"ADM", "USER"};
 		return nomes;
