@@ -3,6 +3,7 @@ package com.repository;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -12,6 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import com.model.Usuario;
+
 
 public class Usuarios implements Serializable{
 	private static final long serialVersionUID = 1L;

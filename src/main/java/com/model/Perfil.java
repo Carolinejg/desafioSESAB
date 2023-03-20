@@ -71,6 +71,8 @@ public class Perfil implements Serializable {
 			return true;
 		if (obj == null)
 			return false;
+		if(obj instanceof String)
+			return obj.toString().equals(perfil.toString()); 
 		if (getClass() != obj.getClass())
 			return false;
 		Perfil other = (Perfil) obj;
@@ -80,6 +82,11 @@ public class Perfil implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Perfil [id=" + id + ", perfil=" + perfil + "]";
 	}
 
 	

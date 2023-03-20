@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.model.Endereco;
-import com.model.Usuario;
 
 
 public class Enderecos implements Serializable{

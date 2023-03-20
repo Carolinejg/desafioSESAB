@@ -1,6 +1,7 @@
 package com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class Usuario implements Serializable {
 	
 	private String nome;
 	
-	@CPF
+	
 	private String cpf;
 	
 	private String email;
@@ -44,7 +45,7 @@ public class Usuario implements Serializable {
 	@JoinTable(name = "usuario_endereco ",
 			joinColumns = @JoinColumn(name = "usuario_id"),
 			inverseJoinColumns = @JoinColumn(name = "endereco_id"))
-	private List<Endereco> enderecos;
+	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
 	
 	public Usuario() {
