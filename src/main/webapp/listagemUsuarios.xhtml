@@ -34,7 +34,7 @@
 
 			<p:dataTable value="#{gestaoUsuariosBean.listaUsuarios}"
 				var="usuario" emptyMessage="Não existem usuários cadastrados"
-				paginator="true" rows="3" paginatorPosition="bottom">
+				paginator="true" rows="3" paginatorPosition="bottom" sortBy="#{usuario.nome}">
 
 				<p:column headerText="ID">
 					<h:outputText value="#{usuario.id}" />
