@@ -11,5 +11,3 @@ INSERT INTO usuario (cpf,data,email,nome,perfil_id) VALUES ("06421140509","2015/
 
 INSERT INTO usuario_endereco (usuario_id,endereco_id) VALUES (1,1);
 INSERT INTO usuario_endereco (usuario_id,endereco_id) VALUES (2,2);
-INSERT INTO usuario_endereco (usuario_id,endereco_id) VALUES (1,2);
-INSERT INTO usuario_endereco (usuario_id,endereco_id) VALUES (2,1);

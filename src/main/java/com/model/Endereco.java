@@ -1,7 +1,10 @@
 package com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,25 +25,45 @@ public class Endereco implements Serializable {
 	private String logradouro;
 	
 	private String cep;
+	
+	@ManyToMany(mappedBy = "enderecos")
+	private List<Usuario>usuarios= new ArrayList<Usuario>();
 
 	public Endereco() {
 		super();
 	}
 
-	public Endereco(Long id, String logradouro, String cep) {
+	
+	public Endereco(Long id, String logradouro, String cep, List<Usuario> usuarios) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
 		this.cep = cep;
+		this.usuarios = usuarios;
 	}
 	
 	
 
-	public Endereco(String logradouro, String cep) {
+
+	public Endereco(String logradouro, String cep, List<Usuario> usuarios) {
 		super();
 		this.logradouro = logradouro;
 		this.cep = cep;
+		this.usuarios = usuarios;
 	}
+	
+	
+
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
 
 	public Long getId() {
 		return id;

@@ -52,8 +52,8 @@ public class Usuarios implements Serializable {
 		return manager.merge(usuario);// se ja existe atualiza no bd
 	}
 
-	public void remover(Usuario usuario) {
-		usuario = porId(usuario.getId());
+	public void remover(Long id) {
+		Usuario usuario = porId(id);
 		manager.remove(usuario);
 	}
 

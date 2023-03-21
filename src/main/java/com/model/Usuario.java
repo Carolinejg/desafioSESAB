@@ -3,7 +3,9 @@ package com.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +21,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.JoinColumn;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity(name = "Usuario")
@@ -45,6 +49,7 @@ public class Usuario implements Serializable {
 	private Perfil perfil;
 	
 	@ManyToMany()
+	@Cascade({ CascadeType.ALL})
 	@JoinTable(name = "usuario_endereco ",
 			joinColumns = @JoinColumn(name = "usuario_id"),
 			inverseJoinColumns = @JoinColumn(name = "endereco_id"))
@@ -53,6 +58,16 @@ public class Usuario implements Serializable {
 	
 	public Usuario() {
 		super();
+	}
+	
+	public void addEndereco(Endereco endereco) {
+		enderecos.add(endereco);
+		endereco.getUsuarios().add(this);
+	}
+	
+	public void removeEndereco(Endereco endereco) {
+		enderecos.remove(endereco);
+		endereco.getUsuarios().remove(this);
 	}
 
 	

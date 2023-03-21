@@ -15,7 +15,7 @@ import com.model.Usuario;
 public class CamadaPersistencia {
 public static void main(String[] args) {
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("AlgaWorksPU");
+		/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("AlgaWorksPU");
 		
 		EntityManager em = emf.createEntityManager();
 		
@@ -60,7 +60,7 @@ public static void main(String[] args) {
 		System.out.println(listaUsuario2);
 		
 		em.close();
-		emf.close();
+		emf.close();*/
 		
 		
 	}
