@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+
+	<meta charset="UTF-8" />
+	<title>Listagem</title>
+
+	<h:outputStylesheet library="algaworks" name="estilo.css" />
+	<f:metadata>
+		<f:viewAction action="#{gestaoUsuariosBean.todosUsuarios}" />
+
+	</f:metadata>
+
+</h:head>
+
+<h:body>
+	<header>
+		<h:graphicImage library="algaworks" />
+	</header>
+	<h:form>
+		<p>
+
+			<p:commandButton value="Voltar"
+				action="listagemUsuarios?faces-redirect=true" icon="fa-reply" />
+		</p>
+
+	</h:form>
+
+
+
+	<div id="conteudo">
+		<h:form>
+			<p:messages autoUpdate="true"></p:messages>
+			<h:outputText value="#{gestaoUsuariosBean.usuario.id}" />
+			<h:outputText value="#{gestaoUsuariosBean.usuario.data}" />
+			<h:outputText value="#{gestaoUsuariosBean.usuario.nome}" />
+			<h:outputText value="#{gestaoUsuariosBean.usuario.cpf}" />
+			<h:outputText value="#{gestaoUsuariosBean.usuario.email}" />
+			<h:outputText value="#{gestaoUsuariosBean.usuario.perfil.perfil}" />
+
+
+			<p:dataTable id="usuariosTabela"
+				value="#{gestaoUsuariosBean.usuario.enderecos}" var="endereco"
+				paginator="true" rows="3" paginatorPosition="bottom"
+				sortBy="#{endereco.logradouro}">
+
+				<p:column headerText="Logradouro" style="text-align: center">
+					<h:outputText value="#{endereco.logradouro}" />
+				</p:column>
+
+				<p:column headerText="Cep" style="text-align: center">
+					<h:outputText value="#{endereco.cep}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Ação" style="text-align: center">
+					<p:commandButton title="Excluir" icon="fa fa-trash" />
+				</p:column>
+
+
+			</p:dataTable>
+
+		</h:form>
+
+	</div>
+
+
+</h:body>
+
+
+
+</html>
+
+

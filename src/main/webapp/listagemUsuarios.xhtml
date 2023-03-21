@@ -26,16 +26,17 @@
 
 	<div id="conteudo">
 		<h:form>
-			
+
 			<p:messages autoUpdate="true"></p:messages>
 			<p>
 
 				<p:commandButton value="Voltar"
-					action="cadastro?faces-redirect=true" icon="fa-reply"/>
+					action="cadastro?faces-redirect=true" icon="fa-reply" />
 			</p>
 
 			<p>
-				<p:inputText placeholder="Nome" value = "#{gestaoUsuariosBean.termoPesquisa}"></p:inputText>
+				<p:inputText placeholder="Nome"
+					value="#{gestaoUsuariosBean.termoPesquisa}"></p:inputText>
 			</p>
 			<p>
 				<p:inputText placeholder="Cpf"></p:inputText>
@@ -47,15 +48,16 @@
 				<p:inputText placeholder="Fim"></p:inputText>
 			</p>
 			<p>
-				<p:commandButton value="Pesquisar" icon="fa fa-search" 
-				actionListener="#{gestaoUsuariosBean.pesquisarPorNome}" update="usuariosTabela" />
+				<p:commandButton value="Pesquisar" icon="fa fa-search"
+					actionListener="#{gestaoUsuariosBean.pesquisarPorNome}"
+					update="usuariosTabela" />
 			</p>
 
 
-			<p:dataTable id ="usuariosTabela" value="#{gestaoUsuariosBean.listaUsuarios}"
-				var="usuario" emptyMessage="Não existem usuários cadastrados"
-				paginator="true" rows="3" paginatorPosition="bottom"
-				sortBy="#{usuario.nome}">
+			<p:dataTable id="usuariosTabela"
+				value="#{gestaoUsuariosBean.listaUsuarios}" var="usuario"
+				emptyMessage="Não existem usuários cadastrados" paginator="true"
+				rows="3" paginatorPosition="bottom" sortBy="#{usuario.nome}">
 
 				<p:column headerText="ID" style="text-align: center">
 					<h:outputText value="#{usuario.id}" />
@@ -82,11 +84,16 @@
 				</p:column>
 
 				<p:column headerText="Ações" style="text-align: center">
-					<p:commandButton title="Detalhar" icon="fa-list" />
+				
+					<p:commandButton title="Detalhar" icon="fa-list"
+						onclick="PF('detalhamentoDialogWidgetVar').show()">
+					</p:commandButton>
 
-					<p:commandButton title="Editar" icon="fa fa-edit" />
+					<p:commandButton title="Editar" icon="fa fa-edit" 
+					onclick="PF('edicaoDialogWidgetVar').show()"/>
 
-					<p:commandButton title="Excluir" icon="fa fa-trash" actionListener="#{gestaoUsuariosBean.excluir(usuario.id)}"/>
+					<p:commandButton title="Excluir" icon="fa fa-trash"
+						actionListener="#{gestaoUsuariosBean.excluir(usuario.id)}" />
 
 				</p:column>
 
@@ -94,7 +101,14 @@
 
 			</p:dataTable>
 
-
+			<p:dialog header="Edição" widgetVar="edicaoDialogWidgetVar"
+				modal="true" resizable="false" closeOnEscape="true">
+				<p:commandButton value="Teste!" />
+			</p:dialog>
+			<p:dialog header="Detalhamento" widgetVar="detalhamentoDialogWidgetVar"
+				modal="true" resizable="false" closeOnEscape="true">
+				<p:commandButton value="Teste!" />
+			</p:dialog>
 		</h:form>
 
 	</div>

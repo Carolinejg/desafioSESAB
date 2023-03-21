@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -57,9 +58,10 @@ public class GestaoUsuariosBean implements Serializable {
 
 	public void excluir(Long id) {
 		usuarioService.excluir(id);
-
+		
+		
 	}
-
+	
 	public void imprimir(Long id) {
 		System.out.println("O ID É " + id);
 	}
@@ -119,6 +121,12 @@ public class GestaoUsuariosBean implements Serializable {
 	public String listagem() {
 		return "listagemUsuarios?faces-redirect=true";
 	}
+	
+	/*public String detalhar(Long id) {
+		usuario = usuarios.pesquisaPorId(id);
+		System.out.println(usuario);
+		return "detalhamento?faces-redirect=true";
+	}*/
 
 	public String getTermoPesquisa() {
 		return termoPesquisa;
@@ -127,5 +135,7 @@ public class GestaoUsuariosBean implements Serializable {
 	public void setTermoPesquisa(String termoPesquisa) {
 		this.termoPesquisa = termoPesquisa;
 	}
+	
+	
 
 }
