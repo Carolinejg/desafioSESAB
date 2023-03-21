@@ -84,13 +84,13 @@
 				</p:column>
 
 				<p:column headerText="Ações" style="text-align: center">
-				
+
 					<p:commandButton title="Detalhar" icon="fa-list"
 						onclick="PF('detalhamentoDialogWidgetVar').show()">
 					</p:commandButton>
 
-					<p:commandButton title="Editar" icon="fa fa-edit" 
-					onclick="PF('edicaoDialogWidgetVar').show()"/>
+					<p:commandButton title="Editar" icon="fa fa-edit"
+						onclick="PF('edicaoDialogWidgetVar').show()" />
 
 					<p:commandButton title="Excluir" icon="fa fa-trash"
 						actionListener="#{gestaoUsuariosBean.excluir(usuario.id)}" />
@@ -103,11 +103,69 @@
 
 			<p:dialog header="Edição" widgetVar="edicaoDialogWidgetVar"
 				modal="true" resizable="false" closeOnEscape="true">
-				<p:commandButton value="Teste!" />
+
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome: " for="nome"></p:outputLabel>
+					<p:inputText id="nome"></p:inputText>
+
+
+					<p:outputLabel value="Cpf " for="cpf"></p:outputLabel>
+					<p:inputText id="cpf"></p:inputText>
+
+					<p:outputLabel value="Email " for="email"></p:outputLabel>
+					<p:inputText id="email"></p:inputText>
+
+					<p:outputLabel value="Logradouro " for="logradouro"></p:outputLabel>
+					<p:inputText id="logradouro"></p:inputText>
+
+					<p:outputLabel value="Cep " for="cep"></p:outputLabel>
+					<p:inputText id="cep"></p:inputText>
+
+					<p:outputLabel value="Perfil: " for="perfil"></p:outputLabel>
+
+					<p:selectOneMenu id="perfil"
+						value="#{gestaoUsuariosBean.usuario.perfil}">
+						<f:selectItems value="#{gestaoPerfisBean.tiposPerfis}"></f:selectItems>
+					</p:selectOneMenu>
+
+					
+				</h:panelGrid>
+				
+				<p:dataTable id="edicaotab" var="endereco" paginator="true"
+						rows="3" paginatorPosition="bottom">
+
+						<p:column headerText="Logradouro" style="text-align: center">
+							<p:outputLabel value="Email " ></p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Cep" style="text-align: center">
+							<p:outputLabel value="Email " ></p:outputLabel>
+						</p:column>
+
+					</p:dataTable>
 			</p:dialog>
-			<p:dialog header="Detalhamento" widgetVar="detalhamentoDialogWidgetVar"
-				modal="true" resizable="false" closeOnEscape="true">
-				<p:commandButton value="Teste!" />
+
+
+			<p:dialog header="Detalhamento"
+				widgetVar="detalhamentoDialogWidgetVar" modal="true"
+				resizable="false" closeOnEscape="true">
+
+
+				<p:dataTable id="edicaotab" var="endereco" paginator="true"
+						rows="3" paginatorPosition="bottom">
+
+						<p:column headerText="Logradouro" style="text-align: center">
+							<p:outputLabel value="Email " ></p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Cep" style="text-align: center">
+							<p:outputLabel value="Email " ></p:outputLabel>
+						</p:column>
+
+				</p:dataTable>
+
+
+
 			</p:dialog>
 		</h:form>
 
