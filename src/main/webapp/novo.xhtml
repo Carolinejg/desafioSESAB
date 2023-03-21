@@ -25,7 +25,7 @@
 
 
 	<div id="conteudo">
-		<h:form id ="form">
+		<h:form>
 
 			<p:messages autoUpdate="true"></p:messages>
 			<p>
@@ -57,7 +57,8 @@
 			<p:dataTable id="usuariosTabela"
 				value="#{gestaoUsuariosBean.listaUsuarios}" var="usuario"
 				emptyMessage="Não existem usuários cadastrados" paginator="true"
-				rows="3" paginatorPosition="bottom" sortBy="#{usuario.nome}">
+				rows="3" paginatorPosition="bottom" sortBy="#{usuario.nome}"
+				selectionMode="single" selection="#{gestaoUsuariosBean.usuario}" rowKey="#{usuario.id}"	>
 
 				<p:column headerText="ID" style="text-align: center">
 					<h:outputText value="#{usuario.id}" />
@@ -85,18 +86,11 @@
 
 				<p:column headerText="Ações" style="text-align: center">
 
+					<p:commandButton title="Detalhar" icon="fa-list"
+						onclick="PF('detalhamentoDialogWidgetVar').show()"
+						>
 
-
-
-					<p:commandButton title="Detalhar" update=":form:enderecoDetalhamento"
-						oncomplete="PF('detalhamentoDialogWidgetVar').show()" icon="fa-list" id="botaodetalhar" >
-						<f:setPropertyActionListener value="#{usuario}"
-							target="#{gestaoUsuariosBean.usuario}" />
 					</p:commandButton>
-
-
-
-
 
 					<p:commandButton title="Editar" icon="fa fa-edit"
 						onclick="PF('edicaoDialogWidgetVar').show()">
@@ -154,24 +148,21 @@
 			</p:dialog>
 
 
-			<p:dialog id="detalhamento" header="Detalhamento"
+			<p:dialog header="Detalhamento"
 				widgetVar="detalhamentoDialogWidgetVar" modal="true"
 				resizable="false" closeOnEscape="true">
 
 
-				<p:dataTable id="enderecoDetalhamento"
-					value="#{gestaoUsuariosBean.usuario.enderecos}" var="endereco"
-					paginator="true" rows="3" paginatorPosition="bottom"
-					sortBy="#{endereco.logradouro}">
+				<p:dataTable id="detalhamentotab" var="endereco" paginator="true"
+					rows="3" paginatorPosition="bottom">
 
 					<p:column headerText="Logradouro" style="text-align: center">
-						<h:outputText value="#{endereco.logradouro}" />
+						<p:outputLabel value="Email "></p:outputLabel>
 					</p:column>
 
 					<p:column headerText="Cep" style="text-align: center">
-						<h:outputText value="#{endereco.cep}"></h:outputText>
+						<p:outputLabel value="Email "></p:outputLabel>
 					</p:column>
-
 
 				</p:dataTable>
 

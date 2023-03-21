@@ -136,6 +136,15 @@ public class GestaoUsuariosBean implements Serializable {
 		this.termoPesquisa = termoPesquisa;
 	}
 	
+	//selecao de uma linha na tabela
+	public boolean estaSelecionado() {
+		return usuario != null && usuario.getId() != null;
+		
+	}
 	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+		System.out.println(usuario + "O USUARIO AI O ");
+	}
 
 }
