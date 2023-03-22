@@ -54,5 +54,9 @@ public class Enderecos implements Serializable{
 		query.setParameter("id", id);
 		return query.getResultList();
 	}
+	
+	public void salvarEndereco(Endereco endereco) {
+		manager.merge(endereco);
+	}
 
 }

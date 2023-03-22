@@ -100,8 +100,9 @@
 
 
 
-					<p:commandButton title="Atualizar" icon="fa fa-edit" update=":formEdicaoform:formEdicao"
-						oncomplete="PF('edicaoDialogWidgetVar').show()" id="botaoEditar" >
+					<p:commandButton title="Atualizar" icon="fa fa-edit"
+						update=":formEdicaoform:formEdicao :formEdicaoform:edicaotab"
+						oncomplete="PF('edicaoDialogWidgetVar').show()" id="botaoEditar">
 						<f:setPropertyActionListener value="#{usuario}"
 							target="#{gestaoUsuariosBean.usuario}" />
 					</p:commandButton>
@@ -109,7 +110,8 @@
 
 
 					<p:commandButton title="Excluir" icon="fa fa-trash"
-						actionListener="#{gestaoUsuariosBean.excluir(usuario.id)}" update="usuariosTabela"/>
+						actionListener="#{gestaoUsuariosBean.excluir(usuario.id)}"
+						update="usuariosTabela" />
 
 				</p:column>
 
@@ -118,7 +120,7 @@
 			</p:dataTable>
 
 
-			
+
 			<p:dialog id="detalhamento" header="Detalhamento"
 				widgetVar="detalhamentoDialogWidgetVar" modal="true"
 				resizable="false" closeOnEscape="true">
@@ -144,52 +146,107 @@
 
 			</p:dialog>
 		</h:form>
-		
-		<h:form id = "formEdicaoform">
-		<p:dialog id="dialogeditar" header="Edição"
+
+		<h:form id="formEdicaoform">
+			<p:dialog id="dialogeditar" header="Edição"
 				widgetVar="edicaoDialogWidgetVar" modal="true" resizable="false"
 				closeOnEscape="true">
 
-				
-					<h:panelGrid columns="2" id = "formEdicao">
-						<p:outputLabel value="Nome: " for="nome"></p:outputLabel>
-						<p:inputText id="nome" value="#{gestaoUsuariosBean.usuario.nome}"></p:inputText>
+
+				<h:panelGrid columns="2" id="formEdicao">
+					<p:outputLabel value="Nome: " for="nome"></p:outputLabel>
+					<p:inputText id="nome" value="#{gestaoUsuariosBean.usuario.nome}"></p:inputText>
 
 
-						<p:outputLabel value="Cpf " for="cpf"></p:outputLabel>
-						<p:inputText id="cpf" value="#{gestaoUsuariosBean.usuario.cpf}"></p:inputText>
+					<p:outputLabel value="Cpf " for="cpf"></p:outputLabel>
+					<p:inputText id="cpf" value="#{gestaoUsuariosBean.usuario.cpf}"></p:inputText>
 
-						<p:outputLabel value="Email " for="email"></p:outputLabel>
-						<p:inputText id="email" 
-							value="#{gestaoUsuariosBean.usuario.email}"></p:inputText>
+					<p:outputLabel value="Email " for="email"></p:outputLabel>
+					<p:inputText id="email" value="#{gestaoUsuariosBean.usuario.email}"></p:inputText>
 
-						<p:outputLabel value="Perfil: " for="perfil"></p:outputLabel>
+					<p:outputLabel value="Perfil: " for="perfil"></p:outputLabel>
 
-						<p:selectOneMenu id="perfil"
-							value="#{gestaoUsuariosBean.usuario.perfil}">
-							<f:selectItems value="#{gestaoPerfisBean.tiposPerfis}"></f:selectItems>
-						</p:selectOneMenu>
-						<h:outputLabel />
+					<p:selectOneMenu id="perfil"
+						value="#{gestaoUsuariosBean.usuario.perfil}">
+						<f:selectItems value="#{gestaoPerfisBean.tiposPerfis}"></f:selectItems>
+					</p:selectOneMenu>
+					<h:outputLabel />
 
-						<p:commandButton value="Atualizar"
-							actionListener="#{gestaoUsuariosBean.atualizar}" update=":form:usuariosTabela" oncomplete="PF('edicaoDialogWidgetVar').hide()"/>
+					<p:commandButton value="Atualizar"
+						actionListener="#{gestaoUsuariosBean.atualizar}"
+						update=":form:usuariosTabela"
+						oncomplete="PF('edicaoDialogWidgetVar').hide()" />
 
-					</h:panelGrid>
+				</h:panelGrid>
 
-					<!-- Aqui  devera ter a tabela para edicao de enderecos -->
+				<!-- Aqui  devera ter a tabela para edicao de enderecos -->
 
-				
+
+				<p:dataTable id="edicaotab" var="endereco" paginator="true" rows="3"
+					paginatorPosition="bottom"
+					value="#{gestaoUsuariosBean.imprimirEnderecos()}">
+
+					<p:column headerText="Logradouro" style="text-align: center">
+						<p:outputLabel value="#{endereco.logradouro} "></p:outputLabel>
+					</p:column>
+
+					<p:column headerText="Cep" style="text-align: center">
+						<p:outputLabel value="#{endereco.cep}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Ações" style="text-align: center">
+						<p:commandButton title="Atualizar Endereço" icon="fa fa-edit"
+							update=":edicaoEnderecos:ultimoEdicao"
+							oncomplete="PF('edicaoEndereco').show()" id="botaoEditar">
+							<f:setPropertyActionListener value="#{endereco}"
+								target="#{gestaoUsuariosBean.endereco}" />
+						</p:commandButton>
+
+					</p:column>
+
+
+				</p:dataTable>
+
+
+
 
 
 			</p:dialog>
-		
-		
+
+<!-- TELA DE EDICAO DE UM ENDERECO -->
+
+
 		</h:form>
-		
-		
-		
-		
-		
+
+
+		<h:form id = "edicaoEnderecos">
+			<p:dialog id="dialogEditarEndereco" header="Edição"
+				widgetVar="edicaoEndereco" modal="true" resizable="false"
+				closeOnEscape="true">
+
+
+				<h:panelGroup id="ultimoEdicao">
+					<p:outputLabel value="Logradouro " for="logradouroEditar"></p:outputLabel>
+					<p:inputText id="logradouroEditar"
+						value="#{gestaoUsuariosBean.endereco.logradouro}"></p:inputText>
+
+					<p:outputLabel value="Cep " for="cepEditar"></p:outputLabel>
+					<p:inputText id="cepEditar"
+						value="#{gestaoUsuariosBean.endereco.cep}"></p:inputText>
+
+					<p:commandButton title="Atualizar" value="OK"
+						update=":formEdicaoform:edicaotab"
+						oncomplete="PF('edicaoEndereco').hide()" id="botaoEditar"
+						actionListener="#{gestaoUsuariosBean.salvarEndereco}">
+						
+					</p:commandButton>
+				</h:panelGroup>
+
+			</p:dialog>
+
+
+		</h:form>
+
+
 
 	</div>
 
