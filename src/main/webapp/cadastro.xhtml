@@ -24,7 +24,7 @@
 				action="#{gestaoUsuariosBean.listagem}" icon="fa-mail-forward" />
 		</h:form>
 
-		<h:form>
+		<h:form id="form">
 
 			<p:messages autoUpdate="true"></p:messages>
 
@@ -101,7 +101,8 @@
 				</p:column>
 
 				<p:column headerText="Ação" style="text-align: center">
-					<p:commandButton title="Excluir" icon="fa fa-trash" />
+					<p:commandButton title="Excluir" icon="fa fa-trash" actionListener="#{gestaoUsuariosBean.removerEnderecoDaLista(endereco)}"
+					update=":form:usuariosTabela"/>
 				</p:column>
 
 

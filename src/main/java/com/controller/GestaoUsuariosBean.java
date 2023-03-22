@@ -60,6 +60,10 @@ public class GestaoUsuariosBean implements Serializable {
 		enderecos.salvarEndereco(endereco);
 	}
 	
+	public void removerEnderecoDaLista(Endereco endereco) {
+		usuario.removeEndereco(endereco);
+	}
+	
 	public void atualizar() {
 		usuarioService.salvar(usuario);
 		
