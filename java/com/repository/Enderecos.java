@@ -1,6 +1,7 @@
 package com.repository;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -41,9 +42,19 @@ public class Enderecos implements Serializable{
 	
 	public void remover(Long id) {
 		Endereco endereco = pesquisaPorId(id);
-		System.out.println(endereco);
-		System.out.println(endereco.getUsuarios());
+		System.out.println("Endereco para remover "+ endereco);
+		System.out.println("Usuarios nesse endereco "+endereco.getUsuarios());
+		
+		List<Usuario> use = new ArrayList<Usuario>(endereco.getUsuarios());
 		manager.remove(endereco);
+		for(Usuario usuario :use ) {
+			usuario.removeEndereco(endereco);
+			System.out.println("Enderecos restantes do usuario "+usuario.getEnderecos());
+			Usuario use2 =manager.merge(usuario);
+			System.out.println("O usuario que o merge retorna "+ use2);
+		}
+				
+		
 	}
 	
 	//select * from usuario 

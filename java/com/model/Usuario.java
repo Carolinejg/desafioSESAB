@@ -82,6 +82,7 @@ public class Usuario implements Serializable {
 		this.email = email;
 		this.perfil = perfil;
 		this.enderecos = enderecos;
+		
 	}
 
 	
@@ -166,6 +167,7 @@ public class Usuario implements Serializable {
 
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
+
 	}
 
 

@@ -14,6 +14,7 @@ import com.model.Usuario;
 import com.repository.Enderecos;
 import com.repository.Usuarios;
 import com.service.CadastroUsuarioService;
+import com.service.EnderecoService;
 import com.util.FacesMessages;
 
 @Named
@@ -43,6 +44,9 @@ public class GestaoUsuariosBean implements Serializable {
 
 	@Inject
 	private CadastroUsuarioService usuarioService;
+	
+	@Inject 
+	EnderecoService enderecoService;
 
 	public void cadastrar() {
 		// usuario.setEnderecos(null);
@@ -56,12 +60,28 @@ public class GestaoUsuariosBean implements Serializable {
 		messages.info("Usuario cadastrado com sucesso!");
 	}
 	
+	public void excluindoEndereco(Long id) {
+		enderecoService.excluir(id);
+		todosUsuarios();
+		usuario= usuarios.pesquisaPorId(usuario.getId());
+		
+	}
+	
+	public EnderecoService getEnderecoService() {
+		return this.enderecoService;
+	}
+	
 	public void salvarEndereco() {
 		enderecos.salvarEndereco(endereco);
 	}
 	
 	public void removerEnderecoDaLista(Endereco endereco) {
 		usuario.removeEndereco(endereco);
+	}
+	
+	public void excluirEnderecoDoUsuario(Endereco endereco) {
+		enderecos.remover(endereco.getId());
+		todosUsuarios();
 	}
 	
 	public void atualizar() {
@@ -80,10 +100,6 @@ public class GestaoUsuariosBean implements Serializable {
 		this.endereco = endereco;
 	}
 	
-	public void imprimir(Long id) {
-		System.out.println("O ID É " + id);
-	}
-
 	private boolean jaHouvePesquisa() {
 		return termoPesquisa != null && !"".equals(termoPesquisa);
 	}
@@ -93,12 +109,12 @@ public class GestaoUsuariosBean implements Serializable {
 	}
 
 	public List<Usuario> getListaUsuarios() {
-		System.out.println(listaUsuarios);
+		System.out.println("Lista de usuarios "+listaUsuarios);
 		return listaUsuarios;
 	}
 
 	public GestaoUsuariosBean() {
-		System.out.println("QUALQUER COISA");
+		System.out.println("Construtor do bean");
 	}
 
 	public void pesquisarPorNome() {
@@ -127,31 +143,17 @@ public class GestaoUsuariosBean implements Serializable {
 		return usuario;
 	}
 
-	public void salvar() {
-		System.out.println("Nome: " + usuario.getNome() + " - Cpf: " + usuario.getCpf() + " - Email: "
-				+ usuario.getEmail() + " - Perfil" + usuario.getPerfil() + " - Data: " + usuario.getData()
-				+ " - Endereco: " + usuario.getEnderecos());
-	}
-	
 	public List<Endereco> imprimirEnderecos(){
-		System.out.println(usuario.getEnderecos());
+		System.out.println("endereco para tabela "+usuario.getEnderecos());
 		return usuario.getEnderecos();
 	}
 
-	public void teste() {
-		System.out.println("testando");
-	}
-
+	
 	public String listagem() {
 		return "listagemUsuarios?faces-redirect=true";
 	}
 	
-	/*public String detalhar(Long id) {
-		usuario = usuarios.pesquisaPorId(id);
-		System.out.println(usuario);
-		return "detalhamento?faces-redirect=true";
-	}*/
-
+	
 	public String getTermoPesquisa() {
 		return termoPesquisa;
 	}
@@ -168,7 +170,7 @@ public class GestaoUsuariosBean implements Serializable {
 	
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-		System.out.println(usuario + "O USUARIO AI O ");
+		System.out.println("Setando usuario" + usuario );
 	}
 
 }

@@ -194,14 +194,22 @@
 						<p:outputLabel value="#{endereco.cep}"></p:outputLabel>
 					</p:column>
 					<p:column headerText="Ações" style="text-align: center">
-						<p:commandButton title="Atualizar Endereço" icon="fa fa-edit"
+						<p:commandButton title="Atualizar" icon="fa fa-edit"
 							update=":edicaoEnderecos:ultimoEdicao"
 							oncomplete="PF('edicaoEndereco').show()" id="botaoEditar">
 							<f:setPropertyActionListener value="#{endereco}"
 								target="#{gestaoUsuariosBean.endereco}" />
 						</p:commandButton>
+						
+						<p:commandButton title="Excluir" icon="fa fa-trash"
+							update=":formEdicaoform:edicaotab :form:usuariosTabela"
+							 id="botaoExcluir" actionListener="#{gestaoUsuariosBean.excluindoEndereco(endereco.id)}" >
+							 
+						</p:commandButton>
 
 					</p:column>
+					
+					
 
 
 				</p:dataTable>

@@ -60,7 +60,8 @@ public class Usuarios implements Serializable {
 	private Usuario porId(Long id) {
 		return manager.find(Usuario.class, id);
 	}
-
+	
+	
 	public List<Usuario> pesquisarPorCpf(String cpfNovo) {
 		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
 

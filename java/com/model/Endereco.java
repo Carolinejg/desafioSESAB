@@ -118,6 +118,7 @@ public class Endereco implements Serializable {
 	public String toString() {
 		return "Endereco [id=" + id + ", logradouro=" + logradouro + ", cep=" + cep + "]";
 	}
-	
-	
+
+
+		
 }
