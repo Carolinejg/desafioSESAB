@@ -29,6 +29,9 @@ Um usuário pode ter mais de um endereço, e um mesmo endereço pode pertencer a
 - HIBERNATE
 - No mínimo uma consulta com CRITERIA
 - No mínimo uma consulta com JPQL
+- JSF
+- PRIMEFACES
+- Arquitetura MVC
 
 ## Modelo Conceitual
 ![](https://github.com/Carolinejg/desafioFullStack/blob/main/figuras/UML.png)
