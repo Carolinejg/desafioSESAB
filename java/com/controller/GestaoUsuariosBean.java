@@ -64,6 +64,15 @@ public class GestaoUsuariosBean implements Serializable {
 		messages.info("Usuario cadastrado com sucesso!");
 	}
 	
+	
+	public void cadastrarEndereco(){
+		usuario.addEndereco(endereco);
+		usuarioService.salvar(usuario);
+		endereco = new Endereco();
+		todosUsuarios();
+		usuario= usuarios.pesquisaPorId(usuario.getId());
+	}
+	
 	public void excluindoEndereco(Long id) {
 		enderecoService.excluir(id);
 		todosUsuarios();
@@ -83,6 +92,7 @@ public class GestaoUsuariosBean implements Serializable {
 		enderecos.salvarEndereco(endereco);
 	}
 	
+		
 	public void removerEnderecoDaLista(Endereco endereco) {
 		usuario.removeEndereco(endereco);
 	}

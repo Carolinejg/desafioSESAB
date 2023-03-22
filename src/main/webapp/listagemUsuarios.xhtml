@@ -269,7 +269,7 @@
 
 		</h:form>
 
-		<h:form>
+		<h:form id= "formcadendereco">
 
 			<p:dialog id="dialogCadastrarEndereco" header="Cadastrar"
 				widgetVar="cadastrarEndereco" modal="true" resizable="false"
@@ -285,7 +285,8 @@
 					<p:inputText id="cepCad" value="#{gestaoUsuariosBean.endereco.cep}"></p:inputText>
 
 					<p:commandButton title="Cadastrar" icon="fa fa-plus"
-						oncomplete="PF('cadastrarEndereco').hide()" id="botaoCadEnd">
+						oncomplete="PF('cadastrarEndereco').hide()" id="botaoCadEnd" actionListener="#{gestaoUsuariosBean.cadastrarEndereco}"
+						update=":formEdicaoform:edicaotab :formcadendereco:cadEndereco :form:usuariosTabela" >
 
 					</p:commandButton>
 				</h:panelGroup>
