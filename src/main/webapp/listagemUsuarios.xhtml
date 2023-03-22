@@ -25,7 +25,7 @@
 
 
 	<div id="conteudo">
-		<h:form id ="form">
+		<h:form id="form">
 
 			<p:messages autoUpdate="true"></p:messages>
 			<p>
@@ -88,8 +88,10 @@
 
 
 
-					<p:commandButton title="Detalhar" update=":form:enderecoDetalhamento"
-						oncomplete="PF('detalhamentoDialogWidgetVar').show()" icon="fa-list" id="botaodetalhar" >
+					<p:commandButton title="Detalhar"
+						update=":form:enderecoDetalhamento"
+						oncomplete="PF('detalhamentoDialogWidgetVar').show()"
+						icon="fa-list" id="botaodetalhar">
 						<f:setPropertyActionListener value="#{usuario}"
 							target="#{gestaoUsuariosBean.usuario}" />
 					</p:commandButton>
@@ -98,18 +100,16 @@
 
 
 
-					<p:commandButton title="Editar" icon="fa fa-edit"
-						onclick="PF('edicaoDialogWidgetVar').show()">
-
-						<p:resetInput target="dialogeditar" />
-
+					<p:commandButton title="Atualizar" icon="fa fa-edit" update=":formEdicaoform:formEdicao"
+						oncomplete="PF('edicaoDialogWidgetVar').show()" id="botaoEditar" >
+						<f:setPropertyActionListener value="#{usuario}"
+							target="#{gestaoUsuariosBean.usuario}" />
 					</p:commandButton>
 
 
 
-
 					<p:commandButton title="Excluir" icon="fa fa-trash"
-						actionListener="#{gestaoUsuariosBean.excluir(usuario.id)}" />
+						actionListener="#{gestaoUsuariosBean.excluir(usuario.id)}" update="usuariosTabela"/>
 
 				</p:column>
 
@@ -117,43 +117,8 @@
 
 			</p:dataTable>
 
-			<p:dialog id="dialogeditar" header="Edição"
-				widgetVar="edicaoDialogWidgetVar" modal="true" resizable="false"
-				closeOnEscape="true">
 
-				<h:panelGrid columns="2">
-					<p:outputLabel value="Nome: " for="nome"></p:outputLabel>
-					<p:inputText id="nome"></p:inputText>
-
-
-					<p:outputLabel value="Cpf " for="cpf"></p:outputLabel>
-					<p:inputText id="cpf"></p:inputText>
-
-					<p:outputLabel value="Email " for="email"></p:outputLabel>
-					<p:inputText id="email"></p:inputText>
-
-					<p:outputLabel value="Logradouro " for="logradouro"></p:outputLabel>
-					<p:inputText id="logradouro"></p:inputText>
-
-					<p:outputLabel value="Cep " for="cep"></p:outputLabel>
-					<p:inputText id="cep"></p:inputText>
-
-					<p:outputLabel value="Perfil: " for="perfil"></p:outputLabel>
-
-					<p:selectOneMenu id="perfil"
-						value="#{gestaoUsuariosBean.usuario.perfil}">
-						<f:selectItems value="#{gestaoPerfisBean.tiposPerfis}"></f:selectItems>
-					</p:selectOneMenu>
-					<h:outputLabel />
-
-					<p:commandButton value="Editar" />
-
-				</h:panelGrid>
-
-				<!-- Aqui  devera ter a tabela para edicao de enderecos -->
-			</p:dialog>
-
-
+			
 			<p:dialog id="detalhamento" header="Detalhamento"
 				widgetVar="detalhamentoDialogWidgetVar" modal="true"
 				resizable="false" closeOnEscape="true">
@@ -179,6 +144,52 @@
 
 			</p:dialog>
 		</h:form>
+		
+		<h:form id = "formEdicaoform">
+		<p:dialog id="dialogeditar" header="Edição"
+				widgetVar="edicaoDialogWidgetVar" modal="true" resizable="false"
+				closeOnEscape="true">
+
+				
+					<h:panelGrid columns="2" id = "formEdicao">
+						<p:outputLabel value="Nome: " for="nome"></p:outputLabel>
+						<p:inputText id="nome" value="#{gestaoUsuariosBean.usuario.nome}"></p:inputText>
+
+
+						<p:outputLabel value="Cpf " for="cpf"></p:outputLabel>
+						<p:inputText id="cpf" value="#{gestaoUsuariosBean.usuario.cpf}"></p:inputText>
+
+						<p:outputLabel value="Email " for="email"></p:outputLabel>
+						<p:inputText id="email" 
+							value="#{gestaoUsuariosBean.usuario.email}"></p:inputText>
+
+						<p:outputLabel value="Perfil: " for="perfil"></p:outputLabel>
+
+						<p:selectOneMenu id="perfil"
+							value="#{gestaoUsuariosBean.usuario.perfil}">
+							<f:selectItems value="#{gestaoPerfisBean.tiposPerfis}"></f:selectItems>
+						</p:selectOneMenu>
+						<h:outputLabel />
+
+						<p:commandButton value="Atualizar"
+							actionListener="#{gestaoUsuariosBean.atualizar}" update=":form:usuariosTabela" oncomplete="PF('edicaoDialogWidgetVar').hide()"/>
+
+					</h:panelGrid>
+
+					<!-- Aqui  devera ter a tabela para edicao de enderecos -->
+
+				
+
+
+			</p:dialog>
+		
+		
+		</h:form>
+		
+		
+		
+		
+		
 
 	</div>
 

@@ -55,9 +55,15 @@ public class GestaoUsuariosBean implements Serializable {
 		}
 		messages.info("Usuario cadastrado com sucesso!");
 	}
+	
+	public void atualizar() {
+		usuarioService.salvar(usuario);
+		
+	}
 
 	public void excluir(Long id) {
 		usuarioService.excluir(id);
+		todosUsuarios();
 		
 		
 	}
@@ -75,6 +81,7 @@ public class GestaoUsuariosBean implements Serializable {
 	}
 
 	public List<Usuario> getListaUsuarios() {
+		System.out.println(listaUsuarios);
 		return listaUsuarios;
 	}
 
