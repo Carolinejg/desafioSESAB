@@ -1,21 +1,21 @@
 package com.repository;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.model.Usuario;
-
 
 @ApplicationScoped
 public class Usuarios implements Serializable {
@@ -31,9 +31,9 @@ public class Usuarios implements Serializable {
 	public Usuario pesquisaPorId(Long id) {
 		return manager.find(Usuario.class, id);
 	}
-	
+
 	public Usuarios() {
-		
+
 	}
 
 	// jpql
@@ -60,9 +60,15 @@ public class Usuarios implements Serializable {
 	private Usuario porId(Long id) {
 		return manager.find(Usuario.class, id);
 	}
-	
-	
-	public List<Usuario> pesquisarPorCpf(String cpfNovo) {
+
+	public List<Usuario> pesquisarPorCampos(String cpfNovo, String nome, Date inicio, Date fim) {
+		if (fim != null) {
+			Calendar c = Calendar.getInstance();
+			c.setTime(fim);
+			c.add(Calendar.DATE, 1);
+			fim = c.getTime();
+		}
+
 		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
 
 		CriteriaQuery<Usuario> criteriaQuery = criteriaBuilder.createQuery(Usuario.class);
@@ -70,9 +76,22 @@ public class Usuarios implements Serializable {
 		Root<Usuario> root = criteriaQuery.from(Usuario.class);
 
 		criteriaQuery.select(root);
+		List<Predicate> listaPred = new ArrayList<>();
+		listaPred.add(criteriaBuilder.and(criteriaBuilder.like(root.<String>get("cpf"), cpfNovo + "%"),
+				criteriaBuilder.like(root.<String>get("nome"), nome + "%")));
 
-		criteriaQuery.where(criteriaBuilder.like(root.<String>get("cpf"), cpfNovo + "%"));
+		if (inicio != null && fim != null) {
+			listaPred.add(criteriaBuilder.greaterThanOrEqualTo(root.<Date>get("data"), inicio));
+			listaPred.add(criteriaBuilder.lessThanOrEqualTo(root.<Date>get("data"), fim));
+		}
+		if (inicio != null && fim == null) {
+			listaPred.add(criteriaBuilder.greaterThanOrEqualTo(root.<Date>get("data"), inicio));
+		}
+		if (inicio == null && fim != null) {
+			listaPred.add(criteriaBuilder.lessThanOrEqualTo(root.<Date>get("data"), fim));
+		}
 
+		criteriaQuery.where(listaPred.toArray(new Predicate[] {}));
 		TypedQuery<Usuario> query = manager.createQuery(criteriaQuery);
 		return query.getResultList();
 

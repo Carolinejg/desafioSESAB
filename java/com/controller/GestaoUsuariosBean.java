@@ -31,7 +31,11 @@ public class GestaoUsuariosBean implements Serializable {
 
 	private Endereco endereco = new Endereco();
 
-	private String termoPesquisa;
+	private String pesquisaNome;
+	private String pesquisaCpf;
+	private Date pesquisaInicio;
+	private Date pesquisaFim;
+	
 
 	@Inject
 	private FacesMessages messages;
@@ -65,6 +69,10 @@ public class GestaoUsuariosBean implements Serializable {
 		todosUsuarios();
 		usuario= usuarios.pesquisaPorId(usuario.getId());
 		
+	}
+	
+	public void imprimirData() {
+		System.out.println("data inicio "+ pesquisaInicio + " data final "+ pesquisaFim);
 	}
 	
 	public EnderecoService getEnderecoService() {
@@ -101,9 +109,25 @@ public class GestaoUsuariosBean implements Serializable {
 	}
 	
 	private boolean jaHouvePesquisa() {
-		return termoPesquisa != null && !"".equals(termoPesquisa);
+		return pesquisaNome != null && !"".equals(pesquisaNome);
 	}
+	
+	public void pesquisarPorNome() {
+		listaUsuarios = usuarios.pesquisarPorNome(pesquisaNome);
 
+		if (listaUsuarios.isEmpty()) {
+			messages.info("Sua consulta não retornou registros");
+		}
+	}
+	
+	public void pesquisar() {
+		listaUsuarios = usuarios.pesquisarPorCampos(pesquisaCpf,pesquisaNome,pesquisaInicio,pesquisaFim);
+
+		if (listaUsuarios.isEmpty()) {
+			messages.info("Sua consulta não retornou registros");
+		}
+	}
+	
 	public void todosUsuarios() {
 		listaUsuarios = usuarios.pesquisarTudo();
 	}
@@ -117,13 +141,7 @@ public class GestaoUsuariosBean implements Serializable {
 		System.out.println("Construtor do bean");
 	}
 
-	public void pesquisarPorNome() {
-		listaUsuarios = usuarios.pesquisarPorNome(termoPesquisa);
-
-		if (listaUsuarios.isEmpty()) {
-			messages.info("Sua consulta não retornou registros");
-		}
-	}
+	
 
 	public void salvarEnderecos() {
 		if (endereco.getLogradouro().equals("") || endereco.getCep().equals("")) {
@@ -153,15 +171,41 @@ public class GestaoUsuariosBean implements Serializable {
 		return "listagemUsuarios?faces-redirect=true";
 	}
 	
-	
-	public String getTermoPesquisa() {
-		return termoPesquisa;
+		
+	public String getPesquisaNome() {
+		return pesquisaNome;
 	}
 
-	public void setTermoPesquisa(String termoPesquisa) {
-		this.termoPesquisa = termoPesquisa;
+	public void setPesquisaNome(String pesquisaNome) {
+		this.pesquisaNome = pesquisaNome;
 	}
+
+	public String getPesquisaCpf() {
+		return pesquisaCpf;
+	}
+
+	public void setPesquisaCpf(String pesquisaCpf) {
+		this.pesquisaCpf = pesquisaCpf;
+	}
+
 	
+
+	public Date getPesquisaInicio() {
+		return pesquisaInicio;
+	}
+
+	public void setPesquisaInicio(Date pesquisaInicio) {
+		this.pesquisaInicio = pesquisaInicio;
+	}
+
+	public Date getPesquisaFim() {
+		return pesquisaFim;
+	}
+
+	public void setPesquisaFim(Date pesquisaFim) {
+		this.pesquisaFim = pesquisaFim;
+	}
+
 	//selecao de uma linha na tabela
 	public boolean estaSelecionado() {
 		return usuario != null && usuario.getId() != null;

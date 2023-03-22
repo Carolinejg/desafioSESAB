@@ -35,21 +35,30 @@
 			</p>
 
 			<p>
-				<p:inputText placeholder="Nome"
-					value="#{gestaoUsuariosBean.termoPesquisa}"></p:inputText>
+				<p:outputLabel value="Nome " for="nome"></p:outputLabel>
+				<p:inputText placeholder="Nome" id="nome" value="#{gestaoUsuariosBean.pesquisaNome}"></p:inputText>
 			</p>
 			<p>
-				<p:inputText placeholder="Cpf"></p:inputText>
+				<p:outputLabel value="Cpf " for="cpf"></p:outputLabel>
+				<p:inputText placeholder="Cpf" id="cpf" value="#{gestaoUsuariosBean.pesquisaCpf}"></p:inputText>
 			</p>
 			<p>
-				<p:inputText placeholder="Inicio"></p:inputText>
+				<p:outputLabel value="Data inicio " for="dataInicio">
+					
+				</p:outputLabel>
+				<p:calendar value="#{gestaoUsuariosBean.pesquisaInicio}" id="dataInicio"  />
 			</p>
-			<p>
-				<p:inputText placeholder="Fim"></p:inputText>
-			</p>
+			<p:outputLabel value="Data Fim " for="dataFim">
+				
+			</p:outputLabel>
+			<p:calendar value="#{gestaoUsuariosBean.pesquisaFim}" id="dataFim" />
+
+
+
+
 			<p>
 				<p:commandButton value="Pesquisar" icon="fa fa-search"
-					actionListener="#{gestaoUsuariosBean.pesquisarPorNome}"
+					actionListener="#{gestaoUsuariosBean.pesquisar}"
 					update="usuariosTabela" />
 			</p>
 
@@ -198,7 +207,7 @@
 						<p:outputLabel value="#{endereco.cep}"></p:outputLabel>
 					</p:column>
 					<p:column headerText="Ações" style="text-align: center">
-					
+
 						<p:commandButton title="Atualizar" icon="fa fa-edit"
 							update=":edicaoEnderecos:ultimoEdicao"
 							oncomplete="PF('edicaoEndereco').show()" id="botaoEditar">
@@ -259,7 +268,7 @@
 
 
 		</h:form>
-		
+
 		<h:form>
 
 			<p:dialog id="dialogCadastrarEndereco" header="Cadastrar"
