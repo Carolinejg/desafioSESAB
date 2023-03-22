@@ -170,12 +170,16 @@
 						value="#{gestaoUsuariosBean.usuario.perfil}">
 						<f:selectItems value="#{gestaoPerfisBean.tiposPerfis}"></f:selectItems>
 					</p:selectOneMenu>
-					<h:outputLabel />
 
+					<h:outputLabel />
 					<p:commandButton value="Atualizar"
 						actionListener="#{gestaoUsuariosBean.atualizar}"
 						update=":form:usuariosTabela"
 						oncomplete="PF('edicaoDialogWidgetVar').hide()" />
+
+					<h:outputLabel />
+					<p:commandButton value="Cadastrar endereço"
+						oncomplete="PF('cadastrarEndereco').show()" />
 
 				</h:panelGrid>
 
@@ -194,22 +198,24 @@
 						<p:outputLabel value="#{endereco.cep}"></p:outputLabel>
 					</p:column>
 					<p:column headerText="Ações" style="text-align: center">
+					
 						<p:commandButton title="Atualizar" icon="fa fa-edit"
 							update=":edicaoEnderecos:ultimoEdicao"
 							oncomplete="PF('edicaoEndereco').show()" id="botaoEditar">
 							<f:setPropertyActionListener value="#{endereco}"
 								target="#{gestaoUsuariosBean.endereco}" />
 						</p:commandButton>
-						
+
 						<p:commandButton title="Excluir" icon="fa fa-trash"
 							update=":formEdicaoform:edicaotab :form:usuariosTabela"
-							 id="botaoExcluir" actionListener="#{gestaoUsuariosBean.excluindoEndereco(endereco.id)}" >
-							 
+							id="botaoExcluir"
+							actionListener="#{gestaoUsuariosBean.excluindoEndereco(endereco.id)}">
+
 						</p:commandButton>
 
 					</p:column>
-					
-					
+
+
 
 
 				</p:dataTable>
@@ -220,13 +226,13 @@
 
 			</p:dialog>
 
-<!-- TELA DE EDICAO DE UM ENDERECO -->
+			<!-- TELA DE EDICAO DE UM ENDERECO -->
 
 
 		</h:form>
 
 
-		<h:form id = "edicaoEnderecos">
+		<h:form id="edicaoEnderecos">
 			<p:dialog id="dialogEditarEndereco" header="Edição"
 				widgetVar="edicaoEndereco" modal="true" resizable="false"
 				closeOnEscape="true">
@@ -245,13 +251,37 @@
 						update=":formEdicaoform:edicaotab"
 						oncomplete="PF('edicaoEndereco').hide()" id="botaoEditar"
 						actionListener="#{gestaoUsuariosBean.salvarEndereco}">
-						
+
 					</p:commandButton>
 				</h:panelGroup>
 
 			</p:dialog>
 
 
+		</h:form>
+		
+		<h:form>
+
+			<p:dialog id="dialogCadastrarEndereco" header="Cadastrar"
+				widgetVar="cadastrarEndereco" modal="true" resizable="false"
+				closeOnEscape="true">
+
+
+				<h:panelGroup id="cadEndereco">
+					<p:outputLabel value="Logradouro " for="logradouroCad"></p:outputLabel>
+					<p:inputText id="logradouroCad"
+						value="#{gestaoUsuariosBean.endereco.logradouro}"></p:inputText>
+
+					<p:outputLabel value="Cep " for="cepCad"></p:outputLabel>
+					<p:inputText id="cepCad" value="#{gestaoUsuariosBean.endereco.cep}"></p:inputText>
+
+					<p:commandButton title="Cadastrar" icon="fa fa-plus"
+						oncomplete="PF('cadastrarEndereco').hide()" id="botaoCadEnd">
+
+					</p:commandButton>
+				</h:panelGroup>
+
+			</p:dialog>
 		</h:form>
 
 
