@@ -34,8 +34,7 @@ Um usuário pode ter mais de um endereço, e um mesmo endereço pode pertencer a
 - Arquitetura MVC
 
 ## Modelo Conceitual
-![](https://github.com/Carolinejg/desafioFullStack/blob/main/figuras/UML.png)
+![](https://github.com/Carolinejg/desafioSESAB/blob/main/src/main/webapp/resources/imagens/UMLSESAB.png)
 
-## Layout mobile
- ![](https://github.com/Carolinejg/desafioFullStack/blob/main/figuras/MOBILE.jpeg)
+## Layout web
 
