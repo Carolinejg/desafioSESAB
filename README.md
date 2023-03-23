@@ -43,5 +43,5 @@ A tela principal contém as seguintes funcionalidades:
 - Cadastro de um usuário 
 - Cadastro dos endereços que serão associados ao usuário no momento do seu cadastro 
 
-OBS: **Para que o endereço(s) sejam associados ao usuário no momento do seu cadastro o mesmo deverá informar os seus respectivos endereços e confirmar a adição deles na opção cadastrar endereço**
+OBS: **Para que o endereço(s) sejam associados ao usuário no momento do seu cadastro o mesmo deverá informar os seus respectivos endereços nos campos logradouro e cep, bem como confirmar a adição deles na opção cadastrar endereço, antes de efetuar o cadastramento de usuário.**
 
