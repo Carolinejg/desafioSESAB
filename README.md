@@ -45,3 +45,15 @@ A tela principal contém as seguintes funcionalidades:
 
 OBS: **Para que o endereço(s) sejam associados ao usuário no momento do seu cadastro o mesmo deverá informar os seus respectivos endereços nos campos logradouro e cep, bem como confirmar a adição deles na opção cadastrar endereço, antes de efetuar o cadastramento de usuário.**
 
+### Tela secundária
+![](https://github.com/Carolinejg/desafioSESAB/blob/main/src/main/webapp/resources/imagens/telasecundaria.png)
+
+A tela secundária contém as seguintes funcinalidades: 
+- Filtragem dos usuários cadastrados. Os filtros aplicados possibilitam a filtragem pelos campos nome, cpf e por um intervalo de datas
+- Detalhamento das informações de um usuário. Nessa opção serão listados todos os endereços associados ao usuário selecionado
+- Edição das informações do usuário. Essa opção contém as seguintes funcionalidades: 
+  - Edição das informações pessoais de um usuário
+  - Edição dos endereços associados a um usuário
+  - Exclusão dos endereços associados a um usuário
+  - Cadastramento de novos endereços associados a um usuário
+- Exclusão de um usuário 
