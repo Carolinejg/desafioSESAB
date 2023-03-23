@@ -39,7 +39,7 @@ public class Usuarios implements Serializable {
 	// jpql
 	public List<Usuario> pesquisarPorNome(String nomeRecebido) {
 		TypedQuery<Usuario> query = manager.createQuery("from Usuario where nome like :nome", Usuario.class);
-		query.setParameter("nome", nomeRecebido + "%"); // tudo que começa com o nome passado
+		query.setParameter("nome", nomeRecebido + "%"); 
 		return query.getResultList();
 	}
 

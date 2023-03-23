@@ -5,9 +5,6 @@ import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import com.model.Perfil;
-import com.model.TipoPerfil;
-
 @Named
 @ViewScoped
 public class GestaoPerfisBean implements Serializable {
