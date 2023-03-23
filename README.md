@@ -37,4 +37,11 @@ Um usuário pode ter mais de um endereço, e um mesmo endereço pode pertencer a
 ![](https://github.com/Carolinejg/desafioSESAB/blob/main/src/main/webapp/resources/imagens/UMLSESAB.png)
 
 ## Layout web
+### Tela principal
+![](https://github.com/Carolinejg/desafioSESAB/blob/main/src/main/webapp/resources/imagens/telaprincipal.png)
+A tela principal contém as seguintes funcionalidades: 
+- Cadastro de um usuário 
+- Cadastro dos endereços que serão associados ao usuário no momento do seu cadastro 
+
+OBS: **Para que o endereço(s) sejam associados ao usuário no momento do seu cadastro o mesmo deverá informar os seus respectivos endereços e confirmar a adição deles na opção cadastrar endereço**
 
